@@ -2,7 +2,7 @@ import { Events } from "discord.js"
 
 export const event = {
     name: Events.ClientReady,
-    once: true  //如果想once: True; Not once: fasle
+    once: true  //如果想once: True; Not once: false
 }
 
 export const action = (c) =>{

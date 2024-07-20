@@ -4,8 +4,7 @@ import { command } from '../commands/ping'
 import { config } from '../commands/config'
 import {useAppStore} from '@/store/app'
 
- 
-
+//Reg the command
 const updateSlashCommands = async(commands,guildId) => {  //REST need parameter: what you need?
     const rest = new REST({version:10}).setToken(process.env.TOKEN) 
     const result = await rest.put(
