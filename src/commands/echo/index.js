@@ -1,26 +1,35 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder } = require("discord.js")
 
 export const data = new SlashCommandBuilder()
-    .setName('echo')
-    .setDescription('Replies with your input!')
-    .addStringOption(option =>
-        option.setName('input')
-            .setDescription('The input to echo back'))
-    .addStringOption(option =>
-        option.setName('prefix')
-            .setDescription('A prefix to add to the echoed message'));       
+  .setName("echo")
+  .setDescription("Replies with your input!")
+  .addStringOption((option) =>
+    option
+      .setName("input")
+      .setDescription("The input to echo back")
+      .setRequired(true)
+  )
 
-export const command = data.toJSON();
+  .addMentionableOption((option) =>
+    option
+      .setName("mentionable")
+      .setDescription("Mention something")
+      .setRequired(true)
+  )
+  .addUserOption((option) =>
+    option.setName("target").setDescription("Select a user").setRequired(true)
+  )
+
+export const command = data.toJSON()
 
 export const action = async (interaction) => {
-    const input = interaction.options.getString('input');
-    const prefix = interaction.options.getString('prefix') || '';
-    if (!input) {
-        await interaction.reply('Please provide some text to echo!');
-    } 
-    if(prefix){
-        await interaction.reply(`${prefix}${input}`);
-    } else {
-        await interaction.reply(input);
-    }
-};
+  const input = interaction.options.getString("input")
+  const user = interaction.options.getUser("target")
+  const tag = interaction.options.getMentionable("mentionable")
+
+  //interaction.reply(user)
+  interaction.reply(
+    `${input} ${tag}\n Username: ${user.username}\nID: ${user.id}`
+  )
+  console.log("done")
+}

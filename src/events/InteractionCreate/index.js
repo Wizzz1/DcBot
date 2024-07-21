@@ -3,7 +3,6 @@ import { useAppStore } from "@/store/app"
 
 export const event = {
     name: Events.InteractionCreate,
-    once: false  //如果想once: True; Not once: fasle
 }
 
 export const action = async(interaction) =>{
