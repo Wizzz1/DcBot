@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js")
+import { SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
   .setName("echo")
@@ -18,18 +18,18 @@ export const data = new SlashCommandBuilder()
   )
   .addUserOption((option) =>
     option.setName("target").setDescription("Select a user").setRequired(true)
-  )
+  );
 
-export const command = data.toJSON()
+export const command = data.toJSON();
 
 export const action = async (interaction) => {
-  const input = interaction.options.getString("input")
-  const user = interaction.options.getUser("target")
-  const tag = interaction.options.getMentionable("mentionable")
+  const input = interaction.options.getString("input");
+  const user = interaction.options.getUser("target");
+  const tag = interaction.options.getMentionable("mentionable");
 
   //interaction.reply(user)
   interaction.reply(
     `${input} ${tag}\n Username: ${user.username}\nID: ${user.id}`
-  )
-  console.log("done")
-}
+  );
+  console.log("done");
+};
