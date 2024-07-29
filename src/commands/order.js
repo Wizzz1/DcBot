@@ -1,6 +1,6 @@
-import { SlashCommandBuilder } from "discord.js"
+import { SlashCommandBuilder } from "discord.js";
 
-export const data = new SlashCommandBuilder()
+export const command = new SlashCommandBuilder()
   .setName("order")
   .setDescription("Order your food and drink")
   .addStringOption((option) =>
@@ -8,12 +8,10 @@ export const data = new SlashCommandBuilder()
   )
   .addStringOption((option) =>
     option.setName("drink").setDescription("Enter your drink").setRequired(true)
-  )
-
-export const command = data.toJSON()
+  );
 
 export const action = async (interaction) => {
-  const food = interaction.options.getString("food")
-  const drink = interaction.options.getString("drink")
-  interaction.reply(`You ordered ${food} and ${drink}`)
-}
+  const food = interaction.options.getString("food");
+  const drink = interaction.options.getString("drink");
+  interaction.reply(`You ordered ${food} and ${drink}`);
+};

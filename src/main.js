@@ -6,7 +6,15 @@ import { loadCommands, loadEvents } from "./core/loader.js";
 
 dotenv.config(); //載入env config
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildVoiceStates,
+  ],
+});
 
 loadCommands(client);
 

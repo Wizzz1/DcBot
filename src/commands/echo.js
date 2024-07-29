@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "discord.js";
 
-export const data = new SlashCommandBuilder()
+export const command = new SlashCommandBuilder()
   .setName("echo")
   .setDescription("Replies with your input!")
   .addStringOption((option) =>
@@ -19,8 +19,6 @@ export const data = new SlashCommandBuilder()
   .addUserOption((option) =>
     option.setName("target").setDescription("Select a user").setRequired(true)
   );
-
-export const command = data.toJSON();
 
 export const action = async (interaction) => {
   const input = interaction.options.getString("input");

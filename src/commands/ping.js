@@ -1,14 +1,12 @@
-import{SlashCommandBuilder} from 'discord.js'
+import { SlashCommandBuilder } from "discord.js";
+import { setTimeout as wait } from "node:timers/promises";
 
 export const command = new SlashCommandBuilder()
-.setName('ping')
-.setDescription('Replies with Pong!')
+  .setName("ping")
+  .setDescription("Replies with Pong!");
 
-
-export const action = async(interaction) =>{
-    const wait = require('node:timers/promises').setTimeout;
-    interaction.reply('Pong!')
-    await wait(2_000);
-	 interaction.editReply('Nguyen is GAY!');
-
-}
+export const action = async (interaction) => {
+  interaction.reply("Pong!");
+  await wait(2_000);
+  interaction.editReply("Nguyen is GAY!");
+};
