@@ -27,7 +27,7 @@ export const action = async (interaction) => {
 
   //interaction.reply(user)
   interaction.reply(
-    `${input} ${tag}\n Username: ${user.username}\nID: ${user.id}`
+    `${input} ${tag}\nUsername: ${user.username}\nID: ${user.id}`
   );
   console.log("done");
 };

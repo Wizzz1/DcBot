@@ -27,6 +27,7 @@ export const loadCommands = async (client) => {
     commands.push(cmd.command);
     client.commands.set(cmd.command.name, cmd.action);
   }
+
   for (const guildId of config.guildIds) {
     console.log("guildID = ", guildId);
     await updateSlashCommands(commands, guildId);
