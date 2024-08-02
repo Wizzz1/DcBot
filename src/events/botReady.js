@@ -1,10 +1,10 @@
 import { Events } from "discord.js"
 
 export const event = {
-    name: Events.ClientReady,
-    once: true  //如果想once: True; Not once: false
+  name: Events.ClientReady,
+  once: false, //如果想once: True; Not once: false
 }
 
-export const action = (c) =>{
-    console.log(`Ready! Logged in as ${c.user.tag}`);
+export const action = (c) => {
+  console.log(`Ready! Logged in as ${c.user.tag}`)
 }
