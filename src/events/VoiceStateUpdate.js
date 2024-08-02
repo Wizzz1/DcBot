@@ -12,6 +12,7 @@ export const event = {
   once: false, //如果想once: True; Not once: false
 };
 
+//@Johnny Lui JohnnyLui0405
 const joinEmbed = (member, channel) => {
   return new EmbedBuilder()
     .setAuthor({
@@ -41,7 +42,7 @@ const mute = (member) => {
       iconURL: member.user.avatarURL(),
     })
     .setDescription(`${member} is muted`)
-    .setColor(0xf04848)
+    .setColor(0xfd7f20)
     .setTimestamp(new Date());
 };
 
@@ -52,7 +53,7 @@ const unmute = (member) => {
       iconURL: member.user.avatarURL(),
     })
     .setDescription(`${member} is unmuted`)
-    .setColor(0x44b37f)
+    .setColor(0x25c0c0)
     .setTimestamp(new Date());
 };
 
@@ -65,7 +66,7 @@ export const action = async (oldState, newState) => {
 
   if (oldState.channel == null && newState.channel != null) {
     console.log(
-      `${newState.member.displayName} new join channel${newState.channel.displayName}`
+      `${newState.member.displayName} new join channel${newState.channel.name}`
     );
 
     await recordChannel.send({
@@ -75,7 +76,7 @@ export const action = async (oldState, newState) => {
 
   if (oldState.channel != null && newState.channel == null) {
     console.log(
-      `${newState.member.displayName} last left ${oldState.channel.displayName}`
+      `${newState.member.displayName} last left ${oldState.channel.name}`
     );
     await recordChannel.send({
       embeds: [leftEmbed(oldState.member, oldState.channel)],
@@ -85,7 +86,7 @@ export const action = async (oldState, newState) => {
   if (oldState.channel != null && newState.channel != null) {
     if (oldState.channel.id != newState.channel.id) {
       console.log(
-        `${newState.member.displayName} left ${oldState.channel.displayName} and join channel${newState.channel.displayName}`
+        `${newState.member.displayName} left ${oldState.channel.name} and join channel${newState.channel.name}`
       );
       await recordChannel.send({
         embeds: [leftEmbed(oldState.member, oldState.channel)],
