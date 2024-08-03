@@ -28,6 +28,7 @@ export const command = new SlashCommandBuilder()
       .setName("channel")
       .setDescription("Select a channel")
       .setRequired(true)
+      .addChannelTypes(ChannelType.GuildVoice)
   );
 
 const playWithMe = (member, channel) => {
