@@ -1,4 +1,5 @@
 import { SlashCommandBuilder } from "discord.js";
+import logger from "../utils/logger.js";
 
 export const command = new SlashCommandBuilder()
   .setName("echo")
@@ -29,5 +30,5 @@ export const action = async (interaction) => {
   interaction.reply(
     `${input} ${tag}\nUsername: ${user.username}\nID: ${user.id}`
   );
-  console.log("done");
+  logger.info("done");
 };

@@ -6,6 +6,7 @@ import {
   MessageFlags,
   time,
 } from "discord.js";
+import logger from "../utils/logger.js";
 
 export const event = {
   name: Events.VoiceStateUpdate,
@@ -65,7 +66,7 @@ export const action = async (oldState, newState) => {
   );
 
   if (oldState.channel == null && newState.channel != null) {
-    console.log(
+    logger.info(
       `${newState.member.displayName} new join channel${newState.channel.name}`
     );
 
@@ -75,7 +76,7 @@ export const action = async (oldState, newState) => {
   }
 
   if (oldState.channel != null && newState.channel == null) {
-    console.log(
+    logger.info(
       `${newState.member.displayName} last left ${oldState.channel.name}`
     );
     await recordChannel.send({
@@ -85,7 +86,7 @@ export const action = async (oldState, newState) => {
 
   if (oldState.channel != null && newState.channel != null) {
     if (oldState.channel.id != newState.channel.id) {
-      console.log(
+      logger.info(
         `${newState.member.displayName} left ${oldState.channel.name} and join channel${newState.channel.name}`
       );
       await recordChannel.send({
@@ -99,14 +100,14 @@ export const action = async (oldState, newState) => {
   }
 
   if (oldState.mute == false && newState.mute == true) {
-    console.log(`${oldState.member.displayName} muted`);
+    logger.info(`${oldState.member.displayName} muted`);
 
     await recordChannel.send({
       embeds: [mute(oldState.member)],
     });
   }
   if (oldState.mute == true && newState.mute == false) {
-    console.log(`${newState.member.displayName} unmuted`);
+    logger.info(`${newState.member.displayName} unmuted`);
 
     await recordChannel.send({
       embeds: [unmute(newState.member)],

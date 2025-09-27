@@ -1,4 +1,5 @@
 import { Events } from "discord.js";
+import logger from "../utils/logger.js";
 
 export const event = {
   name: Events.InteractionCreate,
@@ -9,7 +10,7 @@ export const action = async (interaction) => {
   const client = interaction.client;
   const execute = client.commands.get(interaction.commandName);
 
-  console.log(
+  logger.info(
     `${interaction.member.displayName}(${interaction.member.id}) executing command ${interaction.commandName}`
   );
 
