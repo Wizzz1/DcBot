@@ -1,6 +1,7 @@
 import { REST, Routes, Collection } from "discord.js";
 import { config } from "../utils/config.js";
 import fg from "fast-glob";
+import logger from "../utils/logger.js";
 
 const updateSlashCommands = async (commands, guildId) => {
   const rest = new REST({ version: 10 }).setToken(process.env.TOKEN);
@@ -29,7 +30,7 @@ export const loadCommands = async (client) => {
   }
 
   for (const guildId of config.guildIds) {
-    console.log("guildID = ", guildId);
+    logger.info("guildID = ", guildId);
     await updateSlashCommands(commands, guildId);
   }
 };
